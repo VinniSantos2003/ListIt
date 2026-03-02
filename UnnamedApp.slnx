@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="UnnamedApp.API/UnnamedApp.API.csproj" />
+  <Project Path="UnnamedApp.Infrastructure/UnnamedApp.Infrastructure.csproj" />
+  <Project Path="UnnamedApp.Mobile/UnnamedApp.Mobile.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="UnnamedApp.SharedKernel/UnnamedApp.SharedKernel.csproj" />
+</Solution>
