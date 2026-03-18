@@ -1,6 +1,6 @@
 ﻿namespace UnnamedApp.SharedKernel
 {
-    public class Class1
+    public static class ColorPallet
     {
 
     }

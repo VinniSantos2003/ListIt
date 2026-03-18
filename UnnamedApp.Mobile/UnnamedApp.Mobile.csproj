@@ -67,10 +67,23 @@
     </ItemGroup>
 
     <ItemGroup>
+      <AndroidResource Remove="Components\NoRoute\**" />
+      <Compile Remove="Components\NoRoute\**" />
+      <Content Remove="Components\NoRoute\**" />
+      <EmbeddedResource Remove="Components\NoRoute\**" />
+      <MauiXaml Remove="Components\NoRoute\**" />
+      <None Remove="Components\NoRoute\**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.41" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.41" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.3" />
         <PackageReference Include="MudBlazor" Version="9.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\UnnamedApp.SharedKernel\UnnamedApp.SharedKernel.csproj" />
     </ItemGroup>
 
 </Project>
