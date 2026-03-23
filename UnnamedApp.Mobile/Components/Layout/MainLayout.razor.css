@@ -2,6 +2,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 main {
@@ -9,7 +11,12 @@ main {
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    display: flex;
+    flex-direction: row; /* Coloca os itens na horizontal */
+    justify-content: space-around; /* Distribui o espaço entre os itens igualmente */
+    align-items: center; /* Centraliza verticalmente */
+    background-color: darkgray; /* Ou a cor que preferir */
+    height: 15vh; /* Altura padrão para menus mobile */
 }
 
 .top-row {
