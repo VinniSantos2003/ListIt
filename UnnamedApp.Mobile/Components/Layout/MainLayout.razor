@@ -1,25 +1,26 @@
-﻿@inherits LayoutComponentBase
-@* Required *@
-<MudThemeProvider />
-<MudPopoverProvider />
+﻿@using UnnamedApp.Mobile.Components.NoRoute
+@inherits LayoutComponentBase
+<MudLayout>
+    <MudThemeProvider />
+    <MudPopoverProvider />
+    <MudDialogProvider />
+    <MudSnackbarProvider />
 
-@* Needed for dialogs *@
-<MudDialogProvider />
-
-@* Needed for snackbars *@
-<MudSnackbarProvider />
-
-<div class="page">
-    <main>
-        <article class="content">
-            <MudLayout>
-                <MudMainContent>
-                    @Body
-                </MudMainContent>
-            </MudLayout>
-        </article>
-    </main>
-    <div class="sidebar">
-        <NavMenu /> 
-    </div>
-</div>
+    <MudMainContent Style="padding-top:0">
+        <div class="page">
+            <main>
+                <article class="content">
+                    @Body  
+                    
+                </article>
+                
+            </main>
+            <div class="floating-menu">
+                <FloatingMenu />
+            </div>
+            <div class="sidebar">
+                <NavMenu />
+            </div>
+        </div>
+    </MudMainContent>
+</MudLayout>

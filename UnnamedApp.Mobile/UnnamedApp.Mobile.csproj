@@ -58,7 +58,7 @@
         <!-- Images -->
         <MauiImage Include="Resources\Images\*" />
         <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
-
+       
         <!-- Custom Fonts -->
         <MauiFont Include="Resources\Fonts\*" />
 
@@ -67,12 +67,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <AndroidResource Remove="Components\NoRoute\**" />
-      <Compile Remove="Components\NoRoute\**" />
-      <Content Remove="Components\NoRoute\**" />
-      <EmbeddedResource Remove="Components\NoRoute\**" />
-      <MauiXaml Remove="Components\NoRoute\**" />
-      <None Remove="Components\NoRoute\**" />
+      <Content Remove="Components\NoRoute\FloatingMenu.razor.razor" />
+      <Content Remove="wwwroot\wmenu_svgrepo_com.svg" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiImage Include="wwwroot\wmenu_svgrepo_com.svg" />
     </ItemGroup>
 
     <ItemGroup>

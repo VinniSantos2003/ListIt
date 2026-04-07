@@ -1,0 +1,72 @@
+﻿@inject NavigationManager NavigationManager
+@implements IAsyncDisposable
+
+@if(CurrentPage == PageZero)
+{
+    <MudFab 
+        ButtonType="ButtonType.Button"
+        EndIcon="@Icons.Material.Outlined.Add"
+        Color="Color.Primary"/>
+}
+else if(CurrentPage == PageOne)
+{
+    <MudFabMenu 
+            StartIcon="@Icons.Material.Outlined.Settings"
+            Color="Color.Secondary"
+            OpenOnMouseHover="false"
+            AlignItems="AlignItems.End"
+            CloseOnMenuItemClicked=true
+            UseCloseIcon=true >
+        <MudFabMenuItem 
+                EndIcon="@Icons.Material.Outlined.PlusOne"
+                Color="Color.Secondary"
+                Label="Novo Item"
+                />
+        <MudFabMenuItem 
+                EndIcon="@Icons.Material.Outlined.RestoreFromTrash"
+                Color="Color.Tertiary"
+                Label="Deletar lista" />
+       
+    </MudFabMenu>
+}
+
+
+
+
+
+
+@code {
+    //Dependendo da página em que estiver, o componente terá comportamentos diferentes
+    public string? CurrentPage { get; set; }
+    private string PageZero = "home";
+    private string PageOne = "ItemsList";
+
+    protected override async Task OnInitializedAsync()
+    {
+        ActualPage(); //Quando o componente renderiza, ele ainda não sabe onde está, resolver isso
+        NavigationManager.LocationChanged += HandleLocationChanged;
+        await base.OnInitializedAsync();
+    }
+
+    private void ActualPage()
+    {
+        var uri = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        CurrentPage = string.IsNullOrEmpty(uri) ? PageZero : uri;
+        System.Diagnostics.Debug.WriteLine($"CurrentPage: {CurrentPage}");
+    }
+
+    private void HandleLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        ActualPage();
+        StateHasChanged();
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        NavigationManager.LocationChanged -= HandleLocationChanged;
+        await ValueTask.CompletedTask;
+    }
+
+}
+
+

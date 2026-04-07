@@ -1,0 +1,11 @@
+.menu-position {
+    align-self: flex-end;
+}
+.menu-layout {
+    height: 12px;
+    width: 12px;
+    padding: 5vw 5vw;
+    align-content: center;
+    border-radius: 50%;
+    background-color: aquamarine;
+}

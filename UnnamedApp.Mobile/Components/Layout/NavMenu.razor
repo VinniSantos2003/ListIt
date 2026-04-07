@@ -1,18 +1,27 @@
 ﻿@inject NavigationManager NavigationManager
 <div>
-    <NavLink href="" Match="NavLinkMatch.All">
-  
-        <span class="">Comprados</span>
+    <NavLink @onclick='() => PageHasChanged(PageOne)'
+             href="ItemsList"
+             Match="NavLinkMatch.All">
+        <span>
+            <img src="~/wmenu_svgrepo_com.svg" height="100" width="100"  />
+        </span>
+        
     </NavLink>
 </div>
 <div>
-    <NavLink href="Comprados" Match="NavLinkMatch.All">
-        <span class="">Lista</span>
-    </NavLink>
-</div>
-<div>
-    <NavLink href="Comprados" Match="NavLinkMatch.All">
+    <NavLink @onclick='() => PageHasChanged(PageTwo)'
+             href="Gastos"
+             Match="NavLinkMatch.All">
         <span class="">Gastos</span>
+    </NavLink>
+</div>
+
+<div>
+    <NavLink @onclick='() => PageHasChanged(PageThree)'
+            href="Comprados"
+             Match="NavLinkMatch.All">
+        <span class="">Comprados</span>
     </NavLink>
 </div>
 
@@ -20,21 +29,20 @@
 
 
 @code {
-    public string CurrentPage = string.Empty;
-    
-    public string CompradosPage = "Comprados";
-    private bool IsHomePage = false;
+    private string PageOne = "ItemsList";
+    private string PageTwo = "Gastos";
+    private string PageThree = "Comprados";
+    public string? CurrentPage { get; set; }
 
-
-    protected async override Task OnInitializedAsync()
+    public async Task PageHasChanged(string pageName)
     {
-        CurrentPage = NavigationManager.Uri;
-        
-        if(CurrentPage == NavigationManager.BaseUri)
-            {
-                IsHomePage = true;
-            }
+        //Comparar o CurrentPage com a próxima página, caso a página seja a mesma, voltar para Home
+        if(CurrentPage == pageName)
+        {
+            NavigationManager.NavigateTo("/home");
+        }
+        await Task.Delay(10); //Delay artificial para obter o CurrentPage correto a tempo
+        CurrentPage = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        //System.Diagnostics.Debug.WriteLine($"CurrentPage: {CurrentPage}");     
     }
-
-    
 }

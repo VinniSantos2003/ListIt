@@ -4,8 +4,15 @@
     flex-direction: column;
     min-height: 100vh;
     overflow: hidden;
+    background-color: lightgray;
 }
 
+.floating-menu {
+    padding-right: 3vw;
+    padding-bottom: 3vh;
+    display: flex;
+    align-self: flex-end;
+}
 main {
     flex: 1;
 }
@@ -15,7 +22,7 @@ main {
     flex-direction: row; /* Coloca os itens na horizontal */
     justify-content: space-around; /* Distribui o espaço entre os itens igualmente */
     align-items: center; /* Centraliza verticalmente */
-    background-color: darkgray; /* Ou a cor que preferir */
+    background-color: white; /* Ou a cor que preferir */
     height: 15vh; /* Altura padrão para menus mobile */
 }
 
@@ -44,41 +51,17 @@ main {
     }
 
 @media (max-width: 640.98px) {
+    
     .top-row {
         justify-content: space-between;
     }
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        margin-left: 0;
-    }
+        .top-row ::deep a, .top-row ::deep .btn-link {
+            margin-left: 0;
+        }
 }
 
+
 @media (min-width: 641px) {
-    .page {
-        flex-direction: row;
-    }
 
-    .sidebar {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
-
-    .top-row {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
-
-    .top-row.auth ::deep a:first-child {
-        flex: 1;
-        text-align: right;
-        width: 0;
-    }
-
-    .top-row, article {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
-    }
 }
