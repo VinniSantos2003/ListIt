@@ -1,6 +1,18 @@
 ﻿ 
 <div class="popup-container">
-    
+    <MudPopover
+        Class="popup"
+        
+        AnchorOrigin="Origin.CenterCenter"
+        DropShadow="true"
+        Open="@PopupStatus" 
+        Fixed="false">
+        <MudText>Imagine um popup aqui</MudText>
+    <!--
+        A posição inicial do popup irá se basear com base no centro da tela.
+    -->
+        <MudButton OnClick="ClosePopup"/>
+    </MudPopover>
 </div>
 
 
