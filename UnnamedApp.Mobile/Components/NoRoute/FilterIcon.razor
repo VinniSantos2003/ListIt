@@ -1,0 +1,13 @@
+﻿<div class="filter-container" @onclick="OnClick">
+    <MudIcon Icon="@Icons.Material.Outlined.FilterAlt" />
+</div>
+
+
+
+@code {
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+    /*
+     * Esse parametro serve apenas para receber uma função que ficará atrelada a esse componenete no click
+     */
+}

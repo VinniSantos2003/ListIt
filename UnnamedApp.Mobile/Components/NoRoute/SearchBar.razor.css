@@ -3,7 +3,6 @@
 
     border: outset 1px;
     border-radius: 1rem;
-    min-width: 10vw;
     max-height: 4vh;
     margin-right: var(--search-bar-margin);
     margin-left: var(--search-bar-margin);

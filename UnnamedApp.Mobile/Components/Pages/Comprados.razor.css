@@ -1,0 +1,13 @@
+.search-filter-container {
+    /*Classe que vai conter a div que contem a barra de pesquisa e o ícone de filtro */
+    display: flex;
+    flex-direction: row;
+    align-items: center;   
+}
+.search-bar{
+    min-width:90vw;
+}
+
+.filter {
+    /*Configuração do filtro ta dentro do arquivo FilterIcon.razor.css*/
+}

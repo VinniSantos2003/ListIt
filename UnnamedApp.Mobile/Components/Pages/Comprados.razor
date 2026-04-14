@@ -1,12 +1,20 @@
 ﻿@page "/comprados"
 @using UnnamedApp.Mobile.Components.NoRoute
 
-<SearchBar/>
-<ItemDisplay Item=NewItem/>
-
+<FilterPopup PopupStatus="isPopupOpen" />
+<div class="search-filter-container">
+    <div class="search-bar">
+        <SearchBar />
+    </div>
+    <FilterIcon @onclick="SwichPopupstatus" />
+</div>
+<ItemDisplay Item=NewItem />
 @code {
     public Item? NewItem { get; set; } 
-    public List<Item?>? FilteredItems { get; set; } //
+    public List<Item?>? FilteredItems { get; set; }
+    public bool isPopupOpen { get; set; } = false;
+
+
 
     protected override Task OnInitializedAsync()
     {
@@ -17,6 +25,13 @@
 
         return base.OnInitializedAsync();
     }
+
+    public async Task SwichPopupstatus()
+    {
+        isPopupOpen =! isPopupOpen;
+        System.Diagnostics.Debug.Write(isPopupOpen);
+    }
+
 
 }
 

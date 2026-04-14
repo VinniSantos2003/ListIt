@@ -1,0 +1,29 @@
+﻿ 
+<div class="popup-container">
+    
+</div>
+
+
+
+@code {
+    [Parameter]
+    public bool PopupStatus { get; set; }
+    [Parameter]
+    public static string backgroundColorForContainer { get; set; }
+    /*
+     * [Parameter]
+    public EventCallback<bool> OpenPopUp { get; set; }
+
+    public async Task PopupStatus(bool status)
+    {
+        bool response = status;
+        await OpenPopUp.InvokeAsync(response);
+        }
+     */
+
+    public void ClosePopup()
+    {
+        PopupStatus = false;
+    }
+
+}

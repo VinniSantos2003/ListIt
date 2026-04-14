@@ -3,10 +3,12 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    overflow: hidden;
+    
     background-color: lightgray;
 }
-
+body{
+   
+}
 .floating-menu {
     padding-right: 3vw;
     padding-bottom: 3vh;
