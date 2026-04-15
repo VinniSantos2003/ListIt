@@ -1,0 +1,123 @@
+﻿@inject NavigationManager NavigationManager
+@inject ISnackbar Snackbar
+
+<MudPaper Class="filter-container">
+    <MudStack> 
+        <MudStack Row="true">
+            <MudButton Class="button-config">A-Z</MudButton>
+            <MudButton Class="button-config">Z-A</MudButton>
+        </MudStack>
+        <MudStack Row="true">
+            <MudButton Class="button-config">R$ <MudIcon Icon="@Icons.Material.Filled.ArrowUpward"/></MudButton>
+            <MudButton Class="button-config">R$ <MudIcon Icon="@Icons.Material.Filled.ArrowDownward"/></MudButton>
+        </MudStack>
+        <MudStack Row="true">
+            <MudButton Class="button-config">Novo</MudButton>
+            <MudButton Class="button-config">Antigo</MudButton>
+        </MudStack>
+    </MudStack>
+    <MudButton Variant="Variant.Filled" Color="Color.Error" >Cancelar</MudButton>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary">Aplicar</MudButton>
+
+</MudPaper>
+
+
+<!--
+
+
+<MudDialog>
+    <DialogContent>
+
+        <MudButton IconColor="Color.Primary"
+                   StartIcon="@Icons.Material.Filled.SortByAlpha"
+                   OnClick="SortAZ" />
+        <MudButton IconColor="Color.Error"
+                   StartIcon="@Icons.Material.Filled.SortByAlpha" />
+       
+        <MudDivider />
+        <MudButton EndIcon="@Icons.Material.Filled.ArrowUpward">
+            R$
+        </MudButton>
+        <MudButton EndIcon="@Icons.Material.Filled.ArrowDownward">
+            R$
+        </MudButton>
+        <MudDivider />
+        <MudButton>
+            Novo
+        </MudButton>
+        <MudButton>
+            Antigo
+        </MudButton>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Error" OnClick="Cancel">Fechar</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit">OK</MudButton>
+    </DialogActions>
+</MudDialog>
+-->
+<!--
+
+
+<MudPaper Class="filter-container">
+
+    <MudToggleGroup T="string" @bind-Value="FiltroSelecionado" Color="Color.Primary" Style="display: block !important;">
+     
+        <MudStack Row="true" Spacing="3">
+
+            <MudToggleItem Class="button-config flex-grow-1" Value="@("AZ")">A-Z</MudToggleItem>
+            <MudToggleItem Class="button-config flex-grow-1" Value="@("ZA")">Z-A</MudToggleItem>
+
+        </MudStack>
+              
+        <MudStack Row="true" Spacing="3">
+
+            <MudToggleItem Class="button-config flex-grow-1" Value="@("PrecoMenor")">
+                R$ <MudIcon Icon="@Icons.Material.Outlined.ExpandMore" Size="Size.Small" />
+            </MudToggleItem>
+
+            <MudToggleItem Class="button-config flex-grow-1" Value="@("PrecoMaior")">
+                R$ <MudIcon Icon="@Icons.Material.Outlined.ExpandLess" Size="Size.Small" />
+            </MudToggleItem>
+
+        </MudStack>
+               
+        <MudStack Row="true" Spacing="3">
+
+            <MudToggleItem Class="button-config flex-grow-1" Value="@("Novo")">Novo</MudToggleItem>
+            <MudToggleItem Class="button-config flex-grow-1" Value="@("Antigo")">Antigo</MudToggleItem>
+
+        </MudStack>
+
+    </MudToggleGroup>
+
+    <MudButton Variant="Variant.Filled" Color="Color.Primary">
+        Aplicar
+    </MudButton>
+
+</MudPaper>
+-->
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; }
+    private string ActualPage { get; set; } = string.Empty;
+    public string FiltroSelecionado { get; set; } = "AZ";
+
+    // Colocar verificação de página,
+    // talvez esse filtro ou sort tenha funcionamento diferente dependendo da página ativa
+
+    private void SortAZ()
+    {
+        Snackbar.Add("Ordenação A>Z aplicada!");
+    }
+
+
+
+    private void Submit()
+    {
+        MudDialog.Close(DialogResult.Ok(true));
+    }
+    private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
+}

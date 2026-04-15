@@ -1,0 +1,14 @@
+.filter-container{
+    padding: 0.5rem;
+    min-width: 60vh;
+    background-color: red;
+    padding: 0.5rem;
+}
+.mud-toggle-group-config {
+    display: block !important; /*Sobreescreve uma configuração do Togglegroup para que os mudstack fizem um em baixo do outro*/
+}
+
+
+.button-config{
+    min-width: 20vh;
+}

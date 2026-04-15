@@ -1,17 +1,21 @@
 ﻿@page "/comprados"
 @using UnnamedApp.Mobile.Components.NoRoute
+@using UnnamedApp.Mobile.Components.Dialogue
+@inject IDialogService DialogService
 
-<FilterPopup PopupStatus="isPopupOpen" />
 <div class="search-filter-container">
     <div class="search-bar">
         <SearchBar />
     </div>
-    <FilterIcon @onclick="SwichPopupstatus" />
+    <FilterIcon @onclick="OpenDialogAsync" />
 </div>
+
 <ItemDisplay Item=NewItem />
 @code {
     public Item? NewItem { get; set; } 
     public List<Item?>? FilteredItems { get; set; }
+    [CascadingParameter]
+    public List<Item> GlobalList { get; set; }  
     public bool isPopupOpen { get; set; } = false;
 
 
@@ -31,7 +35,11 @@
         isPopupOpen =! isPopupOpen;
         System.Diagnostics.Debug.Write(isPopupOpen);
     }
-
+    public Task OpenDialogAsync()
+    {
+        var options = new DialogOptions() { CloseOnEscapeKey = true };
+        return DialogService.ShowAsync<FilterDialog>(string.Empty, options);
+    }
 
 }
 

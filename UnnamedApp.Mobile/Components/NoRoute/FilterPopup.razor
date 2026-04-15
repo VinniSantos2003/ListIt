@@ -1,18 +1,8 @@
 ﻿ 
 <div class="popup-container">
-    <MudPopover
-        Class="popup"
-        
-        AnchorOrigin="Origin.CenterCenter"
-        DropShadow="true"
-        Open="@PopupStatus" 
-        Fixed="false">
-        <MudText>Imagine um popup aqui</MudText>
     <!--
         A posição inicial do popup irá se basear com base no centro da tela.
     -->
-        <MudButton OnClick="ClosePopup"/>
-    </MudPopover>
 </div>
 
 
@@ -22,16 +12,7 @@
     public bool PopupStatus { get; set; }
     [Parameter]
     public static string backgroundColorForContainer { get; set; }
-    /*
-     * [Parameter]
-    public EventCallback<bool> OpenPopUp { get; set; }
-
-    public async Task PopupStatus(bool status)
-    {
-        bool response = status;
-        await OpenPopUp.InvokeAsync(response);
-        }
-     */
+  
 
     public void ClosePopup()
     {
