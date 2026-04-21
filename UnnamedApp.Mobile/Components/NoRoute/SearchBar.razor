@@ -1,0 +1,15 @@
+﻿<div class="search-bar-container">
+    <MudTextField 
+        Adornment="Adornment.Start"
+        AdornmentIcon="@Icons.Material.Filled.Search"
+        IconSize="Size.Medium"
+        Class="search-bar-text"
+        Underline="false"
+        Clearable="true"
+        Placeholder="Nome do item."
+        @bind-Value="SearchValue"/>
+</div>
+
+@code {
+    public string SearchValue { get; set; } = string.Empty;
+}

@@ -3,8 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:UnnamedApp.Mobile"
              xmlns:components="clr-namespace:UnnamedApp.Mobile.Components"
-             x:Class="UnnamedApp.Mobile.MainPage">
+             x:Class="UnnamedApp.Mobile.MainPage"
+             >
 
+    <ContentPage.SafeAreaEdges>
+        <OnPlatform x:TypeArguments="SafeAreaEdges">
+            <On Platform="Android, iOS" Value="Container" />
+            <On Platform="WinUI" Value="None" />
+        </OnPlatform>
+    </ContentPage.SafeAreaEdges>
+
+   
+
+
+    <!--  Padding estático via XAML
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="Android, iOS" Value="0,30,0,0"/>
+            <On Platform="WinUi" Value="0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+-->
     <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>
             <RootComponent Selector="#app" ComponentType="{x:Type components:Routes}" />

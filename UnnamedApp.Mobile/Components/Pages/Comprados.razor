@@ -1,5 +1,45 @@
 ﻿@page "/comprados"
-<h3> Comprados </h3>
+@using UnnamedApp.Mobile.Components.NoRoute
+@using UnnamedApp.Mobile.Components.Dialogue
+@inject IDialogService DialogService
+
+<div class="search-filter-container">
+    <div class="search-bar">
+        <SearchBar />
+    </div>
+    <FilterIcon @onclick="OpenDialogAsync" />
+</div>
+
+<ItemDisplay Item=NewItem />
 @code {
-   
+    public Item? NewItem { get; set; } 
+    public List<Item?>? FilteredItems { get; set; }
+    [CascadingParameter]
+    public List<Item> GlobalList { get; set; }  
+    public bool isPopupOpen { get; set; } = false;
+
+
+
+    protected override Task OnInitializedAsync()
+    {
+        NewItem = new();
+        NewItem.Name = "Teste 1";
+        NewItem.TotalPrice = 1000;
+        NewItem.WhenItWasBought = DateOnly.FromDateTime(DateTime.Now);
+
+        return base.OnInitializedAsync();
+    }
+
+    public async Task SwichPopupstatus()
+    {
+        isPopupOpen =! isPopupOpen;
+        System.Diagnostics.Debug.Write(isPopupOpen);
+    }
+    public Task OpenDialogAsync()
+    {
+        var options = new DialogOptions() { CloseOnEscapeKey = true };
+        return DialogService.ShowAsync<FilterDialog>(string.Empty, options);
+    }
+
 }
+
