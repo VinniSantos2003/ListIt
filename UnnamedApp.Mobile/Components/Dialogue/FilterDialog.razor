@@ -1,0 +1,94 @@
+﻿@inject NavigationManager NavigationManager
+<div class="master-container"> <!--Div utilizada para injetar elementos css dentro dos componented MudBlazor-->
+    <MudDialog>
+        <DialogActions>
+            <MudPaper Class="filter-container">
+                <MudStack Class="filter-options">
+                    <MudStack Justify="Justify.Center" Spacing="3" Row="true">
+                        <MudButton OnClick="() => SortSelected(0)" Style="@(buttonStatuses[0].Active ? SelectedButton : UnSelectedButton)" Class="filter-button-config">A-Z</MudButton>
+                        <MudButton OnClick="() => SortSelected(1)" Style="@(buttonStatuses[1].Active ? SelectedButton : UnSelectedButton)" Class="filter-button-config">Z-A</MudButton>
+                    </MudStack>
+                    <MudStack Justify="Justify.Center" Spacing="3" Row="true">
+                        <MudButton OnClick="() => SortSelected(2)" Style="@(buttonStatuses[2].Active ? SelectedButton : UnSelectedButton)" Class="filter-button-config">R$ <MudIcon Icon="@Icons.Material.Filled.ArrowUpward" /></MudButton>
+                        <MudButton OnClick="() => SortSelected(3)" Style="@(buttonStatuses[3].Active ? SelectedButton : UnSelectedButton)" Class="filter-button-config">R$ <MudIcon Icon="@Icons.Material.Filled.ArrowDownward" /></MudButton>
+                    </MudStack>
+                    <MudStack Justify="Justify.Center" Spacing="3" Row="true">
+                        <MudButton OnClick="() => SortSelected(4)" Style="@(buttonStatuses[4].Active ? SelectedButton : UnSelectedButton)" Class="filter-button-config">Novo</MudButton>
+                        <MudButton OnClick="() => SortSelected(5)" Style="@(buttonStatuses[5].Active ? SelectedButton : UnSelectedButton)" Class="filter-button-config">Antigo</MudButton>
+                    </MudStack>
+                </MudStack>
+                <MudStack Justify="Justify.Center" Spacing="3" Row="true">
+                    <MudButton OnClick="()=> Close()" Class="" Variant="Variant.Filled" Color="Color.Error">Cancelar</MudButton>
+                    <!--Colocar o botão de fechar no canto superior direito, fora do mud paper-->
+                    <MudButton OnClick="()=> ApplySort()" Class="save-button">Aplicar</MudButton>
+                </MudStack>
+               
+            </MudPaper>
+        </DialogActions>
+    </MudDialog>
+</div>
+
+
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; }
+
+    private string SelectedButton = "--cor-de-fundo: #707070";
+    private string UnSelectedButton = "--cor-de-fundo: #FFFFFF";
+
+
+    public class ButtonStatus
+    {
+        public int Id { get; set; }
+        public bool Active { get; set; }
+    }
+    private List<ButtonStatus> buttonStatuses = new()
+    {
+        new ButtonStatus { Id = 1, Active = false},
+        new ButtonStatus { Id = 2, Active = false},
+        new ButtonStatus { Id = 3, Active = false},
+        new ButtonStatus { Id = 4, Active = false},
+        new ButtonStatus { Id = 5, Active = false},
+        new ButtonStatus { Id = 6, Active = false},
+
+    };
+
+    // Colocar verificação de página,
+    // talvez esse filtro ou sort tenha funcionamento diferente dependendo da página ativa
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    public void SortSelected(int buttonId)
+    {
+        if (buttonStatuses[buttonId].Active)
+        {
+            buttonStatuses[buttonId].Active = false;
+
+        }
+        else
+        {
+            foreach (var x in buttonStatuses)
+            {
+                if (x.Active)
+                {
+                    x.Active = false;
+                }
+            }
+            buttonStatuses[buttonId].Active = true;
+
+        }
+
+    }
+    public void ApplySort()
+    {
+        MudDialog.Close();
+    }
+    public void Close()
+    {
+        MudDialog.Close();
+    }
+}

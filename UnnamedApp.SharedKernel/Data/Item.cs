@@ -9,6 +9,10 @@ namespace UnnamedApp.SharedKernel.Data
 {
     public class Item : Entity
     {
+        public Item()
+        {
+
+        }
         public string Name { get; set; } = string.Empty;
         public string Link { get; set; } = string.Empty;
         public Priority Priority { get; set; }
@@ -25,7 +29,7 @@ namespace UnnamedApp.SharedKernel.Data
         /// </summary>
         public int Installments { get; set; }
         public bool Bought { get; set; }
-        public required ItemList ItemList { get; set; }
-        public required string ItemListId { get; set; }
+        public ItemList? ItemList { get; set; }
+        public string? ItemListId { get; set; }
     }
 }

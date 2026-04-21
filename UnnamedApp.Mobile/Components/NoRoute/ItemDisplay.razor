@@ -1,0 +1,52 @@
+﻿<!-- Componente que irá mostrar os itens na tela de comprados-->
+<!-- Esse componente terá duas visualizaçoes
+     1- Visualização para itens comprados
+     2- Visualização para itens dentro da lista
+-->
+@inject NavigationManager NavigationManager
+
+@if(Item is not null)
+{
+    @if(ActualPage == "Comprados")
+    {
+        <div class="item-container">
+            <div class="item-list-and-name">
+                <p class="item-name">@Item.Name</p>
+                <p class="item-list-name">Nome da Lista</p>
+            </div>
+                        <div class="item-link">
+                <span>Ver produto</span>
+            </div>
+            <div class="item-value-date">
+                <p class="item-value">R$ @Item.TotalPrice</p>
+                <p class="item-date">@Item.WhenItWasBought</p>
+            </div>            
+
+        </div>
+    }
+    else if(ActualPage == "ItemsList")
+    {
+        
+    }
+    else
+    {
+         <h1>O componente está sendo utilizado onde não deveria</h1>
+    }
+}
+
+
+
+@code {
+    public string ActualPage { get; set; } = string.Empty;
+    [Parameter]
+    public Item? Item { get; set; }
+
+   
+
+    protected override Task OnInitializedAsync()
+    {
+        ActualPage = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        return base.OnInitializedAsync();
+    }
+}
+

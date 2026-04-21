@@ -1,0 +1,72 @@
+
+
+.item-container {
+    --item-padding: 1.5rem;
+    font-size: .9rem;
+    position: relative;
+    border: outset 2px gray;
+    border-radius: 1rem;
+    padding: var(--item-padding);
+    margin: 1.2rem;
+    background-color: ghostwhite;
+}
+
+.item-list-and-name {
+    /*Configuração pra div que exibe nome do item e nome da lista do item*/
+    color: black; /*Cor para ambos os itens*/
+    line-height: 5px;
+    max-width: 50vw;
+    padding-bottom: 2rem;
+}
+
+.item-name{
+    font-weight: bold;
+}
+
+.item-list-name{
+    font-weight: lighter
+}
+
+.item-link {
+    position: absolute;
+    top: var(--item-padding);
+    right: var(--item-padding);
+}
+
+.item-value-date {
+    --item-value-date-border-radius: 0.6rem;
+    --item-value-date-border: solid 2px;
+    --item-value-date-padding: 0.5rem;
+    --item-value-date-min-width: 4vw;
+    /*Configuração pra div que exibe valor do item e data do item*/
+    align-content: safe center;
+    display: flex;
+    flex-direction: row;
+    max-height: 6vh;
+    margin-bottom: 0;
+}
+
+.item-value {
+    text-align: center;
+    padding: var(--item-value-date-padding);
+    min-width: var(--item-value-date-min-width);
+    border-radius: var(--item-value-date-border-radius);
+    border: var(--item-value-date-border);
+    border-color: forestgreen;
+    background-color: lightgreen;
+    color: forestgreen;
+    margin-right: 1vw;
+    margin-bottom: inherit;
+}
+.item-date {
+    text-align: center;
+    padding: var(--item-value-date-padding);
+    min-width: var(--item-value-date-min-width);
+    border-radius: var(--item-value-date-border-radius);
+    border: var(--item-value-date-border);
+    border-color: dimgray;
+    background-color: lightgray;
+    color: dimgray;
+    margin-left: 1vw; /*Espaçamento de um item pro outro*/
+    margin-bottom: inherit;
+}

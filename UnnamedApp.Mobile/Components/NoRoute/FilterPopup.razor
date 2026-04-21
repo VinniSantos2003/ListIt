@@ -1,0 +1,22 @@
+﻿ 
+<div class="popup-container">
+    <!--
+        A posição inicial do popup irá se basear com base no centro da tela.
+    -->
+</div>
+
+
+
+@code {
+    [Parameter]
+    public bool PopupStatus { get; set; }
+    [Parameter]
+    public static string backgroundColorForContainer { get; set; }
+  
+
+    public void ClosePopup()
+    {
+        PopupStatus = false;
+    }
+
+}

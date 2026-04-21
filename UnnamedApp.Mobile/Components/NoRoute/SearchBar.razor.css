@@ -1,0 +1,16 @@
+.search-bar-container {
+    --search-bar-margin: 1.2rem; /*Mesmo valor da margem do .item-container no ItemDisplay.razor.css*/
+
+    border: outset 1px;
+    border-radius: 1rem;
+    max-height: 4vh;
+    margin-right: var(--search-bar-margin);
+    margin-left: var(--search-bar-margin);
+    padding-left: .5rem;
+    background-color: ghostwhite;
+}
+.search-bar-text{
+
+    
+}
+
