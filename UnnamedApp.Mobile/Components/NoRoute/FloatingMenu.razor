@@ -52,7 +52,7 @@ else if(CurrentPage == PageOne)
     {
         var uri = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
         CurrentPage = string.IsNullOrEmpty(uri) ? PageZero : uri;
-        System.Diagnostics.Debug.WriteLine($"CurrentPage: {CurrentPage}");
+        //System.Diagnostics.Debug.WriteLine($"CurrentPage: {CurrentPage}");
     }
 
     private void HandleLocationChanged(object? sender, LocationChangedEventArgs e)
