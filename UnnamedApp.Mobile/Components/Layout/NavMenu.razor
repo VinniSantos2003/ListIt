@@ -37,12 +37,18 @@
     public async Task PageHasChanged(string pageName)
     {
         //Comparar o CurrentPage com a próxima página, caso a página seja a mesma, voltar para Home
+        System.Diagnostics.Debug.WriteLine($"CurrentPage: {CurrentPage} | pageName: {pageName}");
         if(CurrentPage == pageName)
         {
+
             NavigationManager.NavigateTo("/home");
+
         }
-        await Task.Delay(10); //Delay artificial para obter o CurrentPage correto a tempo
+        //Delay artificial para obter o CurrentPage correto a tempo
+
+        await Task.Delay(50);
         CurrentPage = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+       
         //System.Diagnostics.Debug.WriteLine($"CurrentPage: {CurrentPage}");     
     }
 }
