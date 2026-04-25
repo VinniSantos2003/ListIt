@@ -1,0 +1,38 @@
+﻿<MudDialog Class="item-container">
+    <TitleContent>
+        Novo item
+    </TitleContent>
+    <DialogContent>
+        <MudPaper >
+            <MudTextField Class="item-text-field" Label="Nome do item" Variant="Variant.Outlined" @bind-Value="newItem.Name" />
+            <MudTextField Label="Valor (R$)" Variant="Variant.Outlined" @bind-Value="newItem.TotalPrice" Placeholder="Valor (R$) " />
+            <MudTextField Label="Link do item" Variant="Variant.Outlined" @bind-Value="newItem.Link" />
+            <MudSelect Variant="Variant.Outlined"  Label="Prioridade" @bind-Value="Priority">
+                @foreach (string x in PriorityList)
+                {
+                    <MudSelectItem Value="x">@x</MudSelectItem>
+                }
+            </MudSelect>
+            <MudTextField Label="Data prevista" Variant="Variant.Outlined"  @bind-Value="newItem.ExpectedDate" />
+            <MudSwitch Color="Color.Warning" Label="Compra parcelada" LabelPlacement="Placement.Left" @bind-value="newItem.Isinstallment" />
+            <MudButton OnClick="()=> AddItem()"><MudIcon Icon="@Icons.Material.Filled.Add"/>Adicionar item</MudButton>
+        </MudPaper>
+    </DialogContent>
+    <DialogActions>
+
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    public IMudDialogInstance MudDialog { get;set; }
+
+    public Item newItem { get; set; } = new();
+    public string Priority { get; set; }
+    public List<string> PriorityList = new() { "High", "Medium", "Low", "None" };
+
+    public void AddItem()
+    {
+        MudDialog.Close();
+    }
+}
