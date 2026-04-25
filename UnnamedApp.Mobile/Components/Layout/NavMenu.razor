@@ -1,54 +1,75 @@
 ﻿@inject NavigationManager NavigationManager
-<div>
-    <NavLink @onclick='() => PageHasChanged(PageOne)'
-             href="ItemsList"
-             Match="NavLinkMatch.All">
-        <span>
-            Listas
-        </span>
+<MudStack Style="min-width: 100vw;" Row="true" Justify="Justify.SpaceEvenly">
+    <div>
+        <NavLink @onclick="() => ChangeColorOnCick(0)"
+                 href="Home"
+                 Match="NavLinkMatch.All">
+            <MudText Align="Align.Center"><MudIcon Style="@(PageButtons[0].Status ? SelectedPage : UnSelectedPage)" Icon="@Icons.Material.Filled.Menu" /> <br />Listas </MudText>
         
-    </NavLink>
-</div>
-<div>
-    <NavLink @onclick='() => PageHasChanged(PageTwo)'
-             href="Gastos"
-             Match="NavLinkMatch.All">
-        <span class="">Gastos</span>
-    </NavLink>
-</div>
+        </NavLink>
+    </div>
+    <div>
+        <NavLink @onclick="() => ChangeColorOnCick(1)"
+                 href="Gastos"
+                 Match="NavLinkMatch.All">
+            <MudText Align="Align.Center"><MudIcon Style="@(PageButtons[1].Status ? SelectedPage : UnSelectedPage)" Icon="@Icons.Material.Filled.AttachMoney" /> <br />Gastos  </MudText>
+        </NavLink>
+    </div>
 
-<div>
-    <NavLink @onclick='() => PageHasChanged(PageThree)'
-            href="Comprados"
-             Match="NavLinkMatch.All">
-        <span class="">Comprados</span>
-    </NavLink>
-</div>
+    <div>
+        <NavLink @onclick="() => ChangeColorOnCick(2)"
+                 href="Comprados"
+                 Match="NavLinkMatch.All">
+            <MudText Align="Align.Center"><MudIcon Style="@(PageButtons[2].Status ? SelectedPage : UnSelectedPage)" Icon="@Icons.Material.Filled.Check" /> <br /> Comprados </MudText>
+        </NavLink>
+    </div>
+
+</MudStack>
 
 
 
 
 @code {
-    private string PageOne = "ItemsList";
+    private string PageOne = "Home";
     private string PageTwo = "Gastos";
     private string PageThree = "Comprados";
-    public string? CurrentPage { get; set; }
 
-    public async Task PageHasChanged(string pageName)
+    private string SelectedPage = "color: blue";
+    private string UnSelectedPage = "color: black";
+
+    private class PageButton
     {
-        //Comparar o CurrentPage com a próxima página, caso a página seja a mesma, voltar para Home
-        System.Diagnostics.Debug.WriteLine($"CurrentPage: {CurrentPage} | pageName: {pageName}");
-        if(CurrentPage == pageName)
-        {
-
-            NavigationManager.NavigateTo("/home");
-
-        }
-        //Delay artificial para obter o CurrentPage correto a tempo
-
-        await Task.Delay(50);
-        CurrentPage = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
-       
-        //System.Diagnostics.Debug.WriteLine($"CurrentPage: {CurrentPage}");     
+        public int Id { get; set; }
+        public bool Status { get; set; }
     }
+
+    private List<PageButton> PageButtons = new()
+    {
+        new PageButton {Id = 0, Status= false },
+        new PageButton {Id = 1, Status= false },
+        new PageButton {Id = 2, Status= false }
+    };
+
+    public async Task ChangeColorOnCick(int pageId)
+    {
+        PageButtons[pageId].Status = true;
+        foreach (var x in PageButtons)
+        {
+            if (x.Id != pageId)
+            {
+                x.Status = false;
+            }
+        }
+    }
+    public async Task ChangeColorOnInitializedAsync()
+    {
+        PageButtons[0].Status = true;
+    }
+    protected async override Task OnInitializedAsync()
+    {
+        await ChangeColorOnInitializedAsync();
+        
+    }
+
+
 }
