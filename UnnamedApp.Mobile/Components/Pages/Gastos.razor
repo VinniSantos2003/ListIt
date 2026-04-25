@@ -1,6 +1,27 @@
 ﻿@page "/gastos"
-<h3>Gastos</h3>
+@using UnnamedApp.Mobile.Components.NoRoute
+@using UnnamedApp.Mobile.Components.Dialogue
+@inject IDialogService DialogService
+
+
+
+<h3>List It</h3>
+
+<div class="Div-Master">
+    <div style="width: 90%;">
+    
+        <MudDatePicker Label="Selecione o Mês"
+                @bind-Date="dataSelecionada"
+                OpenTo="OpenTo.Month"
+                DateFormat="MM/yyyy" 
+                Class="ms-2"/>
+    </div>
+</div>
 
 @code {
+    
+    DateTime? dataSelecionada = DateTime.Today;
 
 }
+
+
