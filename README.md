@@ -1,4 +1,4 @@
-# UnnamedApp
+# ListIt
 
 Repositório dedicado ao aplicativo ListIt. 
 
