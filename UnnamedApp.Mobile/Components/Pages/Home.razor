@@ -2,9 +2,119 @@
 @page "/home"
 @using UnnamedApp.Mobile.Components.NoRoute
 
-<h1>Home</h1>
+<div id=main-div>
+    <div>
+        <h1>List It</h1>
+    </div>
+
+    <MudPaper Elevation="2" Class="pa-4 rounded-xl">
+
+    <!-- 🔹 Linha do topo (setas + mês/ano) -->
+    <div class="d-flex align-center justify-space-between mb-2">
+
+        <MudIconButton Icon="@Icons.Material.Filled.ChevronLeft"
+                       OnClick="MesAnterior" />
+
+        <div class="d-flex gap-2">
+
+            <MudSelect T="int" @bind-Value="mes" Dense="true" Style="width:90px">
+                @foreach (var m in meses)
+                {
+                    <MudSelectItem Value="@m">@MesNome(m)</MudSelectItem>
+                }
+            </MudSelect>
+
+            <MudSelect T="int" @bind-Value="ano" Dense="true" Style="width:90px">
+                @for (int i = 2020; i <= 2030; i++)
+                {
+                    <MudSelectItem Value="@i">@i</MudSelectItem>
+                }
+            </MudSelect>
+
+        </div>
+
+        <MudIconButton Icon="@Icons.Material.Filled.ChevronRight"
+                       OnClick="ProximoMes" />
+
+    </div>
+
+    <MudDivider Class="my-3" />
+
+    <!-- 🔹 Linha de indicadores -->
+    <div class="d-flex justify-space-between text-center texto-ajustado">
+
+        <div>
+            <MudText Typo="Typo.caption">Gastos</MudText>
+            <MudText Typo="Typo.h6">R$370.00</MudText>
+        </div>
+
+        <div>
+            <MudText Typo="Typo.caption">Itens Comprados</MudText>
+            <MudText Typo="Typo.h6">6</MudText>
+        </div>
+
+        <div>
+            <MudText Typo="Typo.caption">Limite</MudText>
+            <MudText Typo="Typo.h6">-</MudText>
+        </div>
+
+    </div>
+
+    <MudDivider Class="my-3" />
+
+    <!-- 🔹 Linha inferior -->
+    <div class="d-flex align-center justify-space-between">
+
+        <div class="d-flex align-center gap-2">
+            <MudIcon Icon="@Icons.Material.Filled.RadioButtonUnchecked" />
+            <MudText Typo="Typo.body2">Sem limite definido</MudText>
+        </div>
+
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   Class="px-4"
+                   Style="border-radius:20px;">
+            Definir Limite
+        </MudButton>
+
+    </div>
+
+</MudPaper>
+</div>
 
 
 @code{
+    @code {
+    private int mes = DateTime.Now.Month;
+    private int ano = DateTime.Now.Year;
 
+    private List<int> meses = Enumerable.Range(1, 12).ToList();
+
+    private void ProximoMes()
+    {
+        if (mes == 12)
+        {
+            mes = 1;
+            ano++;
+        }
+        else
+            mes++;
+    }
+
+    private void MesAnterior()
+    {
+        if (mes == 1)
+        {
+            mes = 12;
+            ano--;
+        }
+        else
+            mes--;
+    }
+
+    private string MesNome(int m)
+    {
+        return new DateTime(1, m, 1).ToString("MMM");
+    }
+    }   
 }
