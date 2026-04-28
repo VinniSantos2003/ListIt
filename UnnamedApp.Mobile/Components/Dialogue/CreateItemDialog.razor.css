@@ -1,0 +1,7 @@
+.item-container {
+    min-width: 70vw;
+}
+
+    .item-container ::deep .item-text-field {
+        min-width: 70vw;
+    }

@@ -1,9 +1,11 @@
 ﻿@inject NavigationManager NavigationManager
+@using Mobile.Components.Dialogue
+@inject IDialogService DialogService
 @implements IAsyncDisposable
 
 @if(CurrentPage == PageZero)
 {
-    <MudFab 
+    <MudFab OnClick="() => OpenListCreator()"
         ButtonType="ButtonType.Button"
         EndIcon="@Icons.Material.Outlined.Add"
         Color="Color.Primary"/>
@@ -17,7 +19,7 @@ else if(CurrentPage == PageOne)
             AlignItems="AlignItems.End"
             CloseOnMenuItemClicked=true
             UseCloseIcon=true >
-        <MudFabMenuItem 
+        <MudFabMenuItem OnClick="() => OpenItemCreator()"
                 EndIcon="@Icons.Material.Outlined.PlusOne"
                 Color="Color.Secondary"
                 Label="Novo Item"
@@ -52,7 +54,7 @@ else if(CurrentPage == PageOne)
     {
         var uri = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
         CurrentPage = string.IsNullOrEmpty(uri) ? PageZero : uri;
-        System.Diagnostics.Debug.WriteLine($"CurrentPage: {CurrentPage}");
+        //System.Diagnostics.Debug.WriteLine($"CurrentPage: {CurrentPage}");
     }
 
     private void HandleLocationChanged(object? sender, LocationChangedEventArgs e)
@@ -65,6 +67,19 @@ else if(CurrentPage == PageOne)
     {
         NavigationManager.LocationChanged -= HandleLocationChanged;
         await ValueTask.CompletedTask;
+    }
+
+
+    private Task OpenItemCreator()
+    {
+        var options = new DialogOptions() { CloseOnEscapeKey = true, FullWidth=true ,MaxWidth= MaxWidth.ExtraLarge };
+        return DialogService.ShowAsync<CreateItemDialog>(string.Empty, options);
+    }
+
+    private  Task OpenListCreator()
+    {
+        var options = new DialogOptions() { CloseOnEscapeKey = true,FullWidth=true, MaxWidth = MaxWidth.ExtraLarge };
+        return DialogService.ShowAsync<CreateListDialog>(string.Empty, options);
     }
 
 }

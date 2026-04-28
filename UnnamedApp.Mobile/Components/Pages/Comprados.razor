@@ -3,19 +3,42 @@
 @using UnnamedApp.Mobile.Components.Dialogue
 @inject IDialogService DialogService
 
+<div class="master-div">
+    <MudPaper Elevation="0" Class="comprados-mud-paper">
+        <MudStack Justify="Justify.SpaceEvenly" Row="true" Class="comprados-info">
+            <MudStack AlignItems="AlignItems.Center">
+                <MudText Style="color:rgba(0,0,0,0.5)" Align="Align.Center">Gasto Total</MudText>
+                <MudText Style="font-weight: bold" Align="Align.Center">R$ 0,00</MudText>
+                <!--Linkar valores a lista filtrada-->
+            </MudStack>
+            <MudStack AlignItems="AlignItems.Center">
+                <MudText Style="color:rgba(0,0,0,0.5)" Align="Align.Center">Itens Comprados</MudText>
+                <MudText Style="font-weight: bold" Align="Align.Center">0</MudText>
+                <!--Linkar valores a lista filtrada-->
+            </MudStack>
+        </MudStack>
+    </MudPaper>
+</div>
+
 <div class="search-filter-container">
+    <!--Reorganizar as divs dessa tela-->
     <div class="search-bar">
         <SearchBar />
     </div>
     <FilterIcon @onclick="OpenDialogAsync" />
 </div>
 
-<ItemDisplay Item=NewItem />
+@foreach(Item x in GlobalList)
+{
+    <!--Vai parar de aparecer itens na tela comprados por causa disso,
+    estou preparando terreno para o [CascadingParameter]-->
+    <ItemDisplay Item=x />
+}
+
 @code {
-    public Item? NewItem { get; set; } 
+    public Item? NewItem { get; set; }
     public List<Item?>? FilteredItems { get; set; }
-    [CascadingParameter]
-    public List<Item> GlobalList { get; set; }  
+    public List<Item> GlobalList { get; set; } = new();
     public bool isPopupOpen { get; set; } = false;
 
 
@@ -32,7 +55,7 @@
 
     public async Task SwichPopupstatus()
     {
-        isPopupOpen =! isPopupOpen;
+        isPopupOpen = !isPopupOpen;
         System.Diagnostics.Debug.Write(isPopupOpen);
     }
     public Task OpenDialogAsync()

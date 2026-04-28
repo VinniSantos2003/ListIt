@@ -2,11 +2,32 @@
     /*Classe que vai conter a div que contem a barra de pesquisa e o ícone de filtro */
     display: flex;
     flex-direction: row;
-    align-items: center;   
-}
-.search-bar{
+    align-items: center;
+    max-width: 90vw;
     min-width:90vw;
 }
+
+.search-bar {
+    min-width: 85vw;
+}
+
+.master-div {
+    --margem-do-comprados-info: 1.2rem;
+}
+    .master-div ::deep .comprados-mud-paper {
+        max-width: 90vw;
+        margin-right: var(--margem-do-comprados-info);
+        margin-left: var(--margem-do-comprados-info);
+        padding-left: 1.2rem;
+        margin-bottom: var(--margem-do-comprados-info)
+    }
+
+    .master-div ::deep .comprados-info {
+       
+     
+      
+    }
+
 
 .filter {
     /*Configuração do filtro ta dentro do arquivo FilterIcon.razor.css*/

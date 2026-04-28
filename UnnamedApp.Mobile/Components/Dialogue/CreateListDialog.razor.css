@@ -1,0 +1,7 @@
+.main-container {
+
+}
+
+.main ::deep .create-list-container {
+    border: unset 0px black;
+}

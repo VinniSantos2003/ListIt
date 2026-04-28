@@ -1,0 +1,34 @@
+﻿<MudDialog>
+    <TitleContent>
+        Nova Lista de Compras
+    </TitleContent>
+    <DialogContent>
+        <MudPaper Elevation="0" Class="create-list-container">
+            <MudStack>
+                <MudTextField @bind-Value="itemList.Name" Label="Nome da lista" Variant="Variant.Outlined"></MudTextField>
+            </MudStack>
+            <MudStack>
+                <MudTextField @bind-Value="itemList.Description" Label="Descrição da lista" Variant="Variant.Outlined"></MudTextField>
+            </MudStack>
+        </MudPaper>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="()=> CreateList()"><MudIcon Icon="@Icons.Material.Filled.Add" />Criar Lista</MudButton>
+    </DialogActions>
+</MudDialog>
+
+
+@code {
+    [CascadingParameter]
+    public IMudDialogInstance MudDialog { get; set; }
+
+    private ItemList itemList { get; set; } = new();
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+    public void CreateList()
+    {
+        MudDialog.Close();
+    }
+}
