@@ -30,6 +30,6 @@ namespace UnnamedApp.SharedKernel.Data
         public int Installments { get; set; }
         public bool Bought { get; set; }
         public ItemList? ItemList { get; set; }
-        public string? ItemListId { get; set; }
+        public Guid? ItemListId { get; set; }
     }
 }

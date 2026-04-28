@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MudBlazor;
 using MudBlazor.Services;
+using UnnamedApp.Mobile.Services;
+using UnnamedApp.SharedKernel.Data;
 
 namespace UnnamedApp.Mobile
 {
@@ -30,8 +33,12 @@ namespace UnnamedApp.Mobile
                 config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
             });
             
-
-#if DEBUG
+            builder.Services.AddDbContext<ApplicationContext>(options => 
+            {
+                options.UseSqlite($"Filename={Path.Combine(FileSystem.AppDataDirectory, "mydb.db3")}");
+            });
+            builder.Services.AddSingleton<DatabaseService>();
+#if DEBUG   
             builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
