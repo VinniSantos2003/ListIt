@@ -1,33 +1,50 @@
-.search-filter-container {
-    /*Classe que vai conter a div que contem a barra de pesquisa e o ícone de filtro */
+.info-div {
+    --margem-do-comprados-info: 1.2rem;
+    display: flex;
+}
+
+    .info-div ::deep .comprados-mud-paper {
+        width: 85vw;
+        
+        margin-bottom: var(--margem-do-comprados-info);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .info-div ::deep .comprados-info {
+    }
+
+.search-bar-div {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    max-width: 90vw;
-    min-width:90vw;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
-
-.search-bar {
-    min-width: 85vw;
-}
-
-.master-div {
-    --margem-do-comprados-info: 1.2rem;
-}
-    .master-div ::deep .comprados-mud-paper {
-        max-width: 90vw;
-        margin-right: var(--margem-do-comprados-info);
-        margin-left: var(--margem-do-comprados-info);
-        padding-left: 1.2rem;
-        margin-bottom: var(--margem-do-comprados-info)
+    .search-bar-div ::deep .search-bar-config {
+        /*Classe que vai conter a div que contem a barra de pesquisa e o ícone de filtro */
+        min-width: 75vw;
+        margin: auto;
+        
     }
 
-    .master-div ::deep .comprados-info {
-       
-     
-      
+    .search-bar-div ::deep .sort-icon-config {
+        margin: auto;
+        min-width: 10vw;
+  
     }
 
+.item-display-div{
+    display:flex;
+    flex-direction: column;
+    width: 85vw;
+    margin: auto;
+    
+}
+
+.item-display-div ::deep .item{
+
+}
 
 .filter {
     /*Configuração do filtro ta dentro do arquivo FilterIcon.razor.css*/
