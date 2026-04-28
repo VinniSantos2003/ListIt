@@ -5,3 +5,11 @@
 .texto-ajustado{
     margin: 0px 20px 0px 20px;
 }
+
+.sum-of-wishes-card .mud-input-root {
+    margin: 20px 0px 0px 0px;
+}
+
+.list-filter .mud-input-root {
+    background-color: #ffffff;
+}

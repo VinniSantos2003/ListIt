@@ -2,93 +2,149 @@
 @page "/home"
 @using UnnamedApp.Mobile.Components.NoRoute
 
-<div id=main-div>
+<div id="main-div">
     <div>
         <h1>List It</h1>
     </div>
 
     <MudPaper Elevation="2" Class="pa-4 rounded-xl">
 
-    <!-- 🔹 Linha do topo (setas + mês/ano) -->
-    <div class="d-flex align-center justify-space-between mb-2">
+        <!-- 🔹 Linha do topo (setas + mês/ano) -->
+        <div class="d-flex align-center justify-space-between mb-2">
 
-        <MudIconButton Icon="@Icons.Material.Filled.ChevronLeft"
-                       OnClick="MesAnterior" />
+            <MudIconButton Icon="@Icons.Material.Filled.ChevronLeft"
+                           OnClick="MesAnterior" />
 
-        <div class="d-flex gap-2">
+            <div class="d-flex gap-2">
 
-            <MudSelect T="int" @bind-Value="mes" Dense="true" Style="width:90px">
-                @foreach (var m in meses)
-                {
-                    <MudSelectItem Value="@m">@MesNome(m)</MudSelectItem>
-                }
-            </MudSelect>
+                <!-- Mês -->
+                <MudSelect T="int" @bind-Value="mes" Dense="true" Style="width:90px">
+                    @foreach (var m in meses)
+                    {
+                        <MudSelectItem Value="@m">@MesNome(m)</MudSelectItem>
+                    }
+                </MudSelect>
 
-            <MudSelect T="int" @bind-Value="ano" Dense="true" Style="width:90px">
-                @for (int i = 2020; i <= 2030; i++)
-                {
-                    <MudSelectItem Value="@i">@i</MudSelectItem>
-                }
-            </MudSelect>
+                <!-- Ano -->
+                <MudSelect T="int" @bind-Value="ano" Dense="true" Style="width:90px">
+                    @foreach (var a in anos)
+                    {
+                        <MudSelectItem Value="@a">@a</MudSelectItem>
+                    }
+                </MudSelect>
+
+            </div>
+
+            <MudIconButton Icon="@Icons.Material.Filled.ChevronRight"
+                           OnClick="ProximoMes" />
 
         </div>
 
-        <MudIconButton Icon="@Icons.Material.Filled.ChevronRight"
-                       OnClick="ProximoMes" />
+        <MudDivider Class="my-3" />
 
-    </div>
+        <!-- Linha de indicadores -->
+        <div class="d-flex justify-space-between text-center texto-ajustado">
 
-    <MudDivider Class="my-3" />
+            <div>
+                <MudText Typo="Typo.caption">Gastos</MudText>
+                <MudText Typo="Typo.h6">R$370.00</MudText>
+            </div>
 
-    <!-- 🔹 Linha de indicadores -->
-    <div class="d-flex justify-space-between text-center texto-ajustado">
+            <div>
+                <MudText Typo="Typo.caption">Itens Comprados</MudText>
+                <MudText Typo="Typo.h6">6</MudText>
+            </div>
 
-        <div>
-            <MudText Typo="Typo.caption">Gastos</MudText>
-            <MudText Typo="Typo.h6">R$370.00</MudText>
+            <div>
+                <MudText Typo="Typo.caption">Limite</MudText>
+                <MudText Typo="Typo.h6">-</MudText>
+            </div>
+
         </div>
 
-        <div>
-            <MudText Typo="Typo.caption">Itens Comprados</MudText>
-            <MudText Typo="Typo.h6">6</MudText>
+        <MudDivider Class="my-3" />
+
+        <!-- Linha inferior -->
+        <div class="d-flex align-center justify-space-between">
+
+            <div class="d-flex align-center gap-2">
+                <MudIcon Icon="@Icons.Material.Filled.RadioButtonUnchecked" />
+                <MudText Typo="Typo.body2">Sem limite definido</MudText>
+            </div>
+
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       Class="px-4"
+                       Style="border-radius:20px;">
+                Definir Limite
+            </MudButton>
         </div>
+    </MudPaper>
 
-        <div>
-            <MudText Typo="Typo.caption">Limite</MudText>
-            <MudText Typo="Typo.h6">-</MudText>
+    <!-- Card azul -->
+    <MudPaper Class="pa-4 mb-3 rounded-xl sum-of-wishes-card" Style="background:#1E88E5; color:white;">
+        <div class="d-flex justify-space-between align-center">
+            <MudText Typo="Typo.h6">Soma dos Desejos</MudText>
+            <MudText Typo="Typo.h5">@($"R${SomaDesejos:F2}")</MudText>
         </div>
+    </MudPaper>
 
-    </div>
+    <!-- Busca -->
+    <MudTextField Placeholder="Buscar lista..."
+                  Variant="Variant.Outlined"
+                  Adornment="Adornment.Start"
+                  AdornmentIcon="@Icons.Material.Filled.Search"
+                  Class="mb-3 list-filter"
+                  @bind-Value="filtro" />
 
-    <MudDivider Class="my-3" />
+    <!-- Listas -->
+    @foreach (var lista in ListasFiltradas)
+    {
+        <MudPaper Class="pa-4 mb-3 rounded-xl">
 
-    <!-- 🔹 Linha inferior -->
-    <div class="d-flex align-center justify-space-between">
+            <div class="d-flex justify-space-between align-center">
 
-        <div class="d-flex align-center gap-2">
-            <MudIcon Icon="@Icons.Material.Filled.RadioButtonUnchecked" />
-            <MudText Typo="Typo.body2">Sem limite definido</MudText>
-        </div>
+                <div>
+                    <MudText Typo="Typo.h6">@lista.Nome</MudText>
+                    <MudText Typo="Typo.body2">@lista.Descricao</MudText>
+                </div>
 
-        <MudButton Variant="Variant.Filled"
-                   Color="Color.Primary"
-                   Class="px-4"
-                   Style="border-radius:20px;">
-            Definir Limite
-        </MudButton>
+                <MudText Typo="Typo.h6">
+                    @($"R${lista.Total:F2}")
+                </MudText>
 
-    </div>
+            </div>
 
-</MudPaper>
+            <MudProgressLinear Value="@lista.Progresso"
+                               Class="my-2"
+                               Color="Color.Success" />
+
+            <div class="d-flex justify-space-between">
+
+                <MudText Typo="Typo.caption">
+                    @($"{lista.Progresso}%")
+                </MudText>
+
+                <MudChip T="string">
+                    @($"{lista.ItensComprados}/{lista.TotalItens}")
+                </MudChip>
+
+            </div>
+
+        </MudPaper>
+    }
+
 </div>
 
-
-@code{
-    @code {
+@code {
     private int mes = DateTime.Now.Month;
     private int ano = DateTime.Now.Year;
 
     private List<int> meses = Enumerable.Range(1, 12).ToList();
+
+    private List<int> anos = Enumerable
+        .Range(DateTime.Now.Year - 5, 16)
+        .ToList();
 
     private void ProximoMes()
     {
@@ -98,7 +154,9 @@
             ano++;
         }
         else
+        {
             mes++;
+        }
     }
 
     private void MesAnterior()
@@ -109,12 +167,57 @@
             ano--;
         }
         else
+        {
             mes--;
+        }
     }
 
     private string MesNome(int m)
     {
         return new DateTime(1, m, 1).ToString("MMM");
     }
-    }   
+
+    private string filtro = "";
+
+    private List<ListaDesejo> listas = new()
+    {
+        new ListaDesejo
+        {
+            Nome = "Comprinhas",
+            Descricao = "Roupas e sapatos",
+            Total = 320,
+            TotalItens = 10,
+            ItensComprados = 5
+        },
+        new ListaDesejo
+        {
+            Nome = "Casa nova",
+            Descricao = "Móveis e decoração",
+            Total = 880,
+            TotalItens = 5,
+            ItensComprados = 1
+        }
+    };
+
+    private IEnumerable<ListaDesejo> ListasFiltradas =>
+        listas.Where(l =>
+            string.IsNullOrWhiteSpace(filtro) ||
+            (l.Nome?.Contains(filtro, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (l.Descricao?.Contains(filtro, StringComparison.OrdinalIgnoreCase) ?? false)
+        );
+
+    private double SomaDesejos => listas.Sum(l => l.Total);
+
+    public class ListaDesejo
+    {
+        public string Nome { get; set; }
+        public string Descricao { get; set; }
+        public double Total { get; set; }
+
+        public int TotalItens { get; set; }
+        public int ItensComprados { get; set; }
+
+        public int Progresso =>
+            TotalItens == 0 ? 0 : (ItensComprados * 100 / TotalItens);
+    }
 }
