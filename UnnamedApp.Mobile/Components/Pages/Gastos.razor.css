@@ -1,6 +1,12 @@
-.card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 16px;
+
+
+.Div-Master {
+    --margem-do-gastos-donut: 1.2 rem;
 }
+    .Div-Master::deep .gastos-mud-paper {
+        max-width: 90vw;
+        margin-right: var(--margem-do-gastos-donut);
+        margin-left: var(--margem-do-gastos-donut);
+        padding-left: 1.2rem;
+        margin-bottom: var(--margem-do-gastos-donut)
+    }
