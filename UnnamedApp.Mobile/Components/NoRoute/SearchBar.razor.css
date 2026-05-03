@@ -4,8 +4,8 @@
     border: outset 1px;
     border-radius: 1rem;
     max-height: 4vh;
-    margin-right: var(--search-bar-margin);
-    margin-left: var(--search-bar-margin);
+    margin-right: auto;
+    margin-left: auto;
     padding-left: .5rem;
     background-color: ghostwhite;
 }

@@ -3,15 +3,15 @@
 
     .master-container ::deep .filter-container {
         /*É utilizado o deep para injetar o css dentro dos componentes mudblazor, sem isso, não vai funcionar*/
-        background-color: palevioletred;
-        padding: 0.5rem;
+        
+        padding: 1rem;
     }
 
     .master-container ::deep .filter-button-config {
         background-color: var(--cor-de-fundo,ghostwhite) !important;
         min-width: 10vh;
         border-radius: 15px;
-        border: solid 1px black;
+        border: solid 2px black;
     }
 
     .master-container ::deep .filter-options {
@@ -20,8 +20,10 @@
     }
 
     .master-container ::deep .save-button {
-        background: #ffffff !important;
-        background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(127, 131, 253, 1) 29%, rgba(0, 8, 252, 1) 100%) !important;
+        background: #7de2f0;
+        background: linear-gradient(90deg,rgba(125, 226, 240, 1) 0%, rgba(0, 92, 252, 1) 100%);
+        color: white;
+        font-weight: bold;
         /*Pensar em um nome melhor*/
     }
 

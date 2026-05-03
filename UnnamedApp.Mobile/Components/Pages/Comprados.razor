@@ -4,7 +4,7 @@
 @inject IDialogService DialogService
 @inject DatabaseService Database;
 
-<div class="master-div">
+<div class="info-div">
     <MudPaper Elevation="0" Class="comprados-mud-paper">
         <MudStack Justify="Justify.SpaceEvenly" Row="true" Class="comprados-info">
             <MudStack AlignItems="AlignItems.Center">
@@ -21,20 +21,33 @@
     </MudPaper>
 </div>
 
-<div class="search-filter-container">
-    <!--Reorganizar as divs dessa tela-->
-    <div class="search-bar">
+<div class="search-bar-div">
+        <!--Reorganizar as divs dessa tela-->
+    <div class="search-bar-config">
         <SearchBar />
     </div>
-    <FilterIcon @onclick="OpenDialogAsync" />
+    <div class="sort-icon-config">
+        <FilterIcon @onclick="OpenDialogAsync" />
+    </div>
+       
 </div>
 
-@foreach(Item x in GlobalList)
-{
-    <!--Vai parar de aparecer itens na tela comprados por causa disso,
+<div class="item-display-div">
+    @foreach (Item x in GlobalList)
+    {
+        <!--Vai parar de aparecer itens na tela comprados por causa disso,
     estou preparando terreno para o [CascadingParameter]-->
-    <ItemDisplay Item=x />
-}
+        <ItemDisplay Item=x />
+    }
+    <ItemDisplay Item=NewItem />
+    <ItemDisplay Item=NewItem />
+    <ItemDisplay Item=NewItem />
+    <ItemDisplay Item=NewItem />
+    <ItemDisplay Item=NewItem />
+    <ItemDisplay Item=NewItem />
+    <ItemDisplay Item=NewItem />
+</div>
+
 
 @code {
     public Item? NewItem { get; set; }

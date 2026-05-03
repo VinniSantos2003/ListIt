@@ -1,8 +1,14 @@
 .filter-container {
+    display: grid;
+    
+    place-items: center;
     background-color: ghostwhite;
     border: 1px hidden;
     border-radius: 10px;
-    padding: 0.4rem;
-    max-width: 10vw;
-    max-height: 4vh; /*Mesma altura máxima da barra de pesquisas*/
+    height: 4vh;
+    width:10vw;
+    min-width: 5vw;
+    
+    
+    /*Mesma altura máxima da barra de pesquisas*/
 }
