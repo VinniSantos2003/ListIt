@@ -2,7 +2,7 @@
 <div class="master-container"> <!--Div utilizada para injetar elementos css dentro dos componented MudBlazor-->
     <MudDialog>
         <DialogActions>
-            <MudPaper Class="filter-container">
+            <MudPaper Elevation="0" Class="filter-container">
                 <MudStack Class="filter-options">
                     <MudStack Justify="Justify.Center" Spacing="3" Row="true">
                         <MudButton OnClick="() => SortSelected(0)" Style="@(buttonStatuses[0].Active ? SelectedButton : UnSelectedButton)" Class="filter-button-config">A-Z</MudButton>
@@ -17,8 +17,7 @@
                         <MudButton OnClick="() => SortSelected(5)" Style="@(buttonStatuses[5].Active ? SelectedButton : UnSelectedButton)" Class="filter-button-config">Antigo</MudButton>
                     </MudStack>
                 </MudStack>
-                <MudStack Justify="Justify.Center" Spacing="3" Row="true">
-                    <MudButton OnClick="()=> Close()" Class="" Variant="Variant.Filled" Color="Color.Error">Cancelar</MudButton>
+                <MudStack StretchItems="StretchItems.Start" Justify="Justify.Center" Spacing="3" Row="true">
                     <!--Colocar o botão de fechar no canto superior direito, fora do mud paper-->
                     <MudButton OnClick="()=> ApplySort()" Class="save-button">Aplicar</MudButton>
                 </MudStack>

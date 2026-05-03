@@ -23,15 +23,15 @@
 }
     .search-bar-div ::deep .search-bar-config {
         /*Classe que vai conter a div que contem a barra de pesquisa e o ícone de filtro */
-        min-width: 75vw;
+        min-width: 65vw;
+        width: 65vw;
+        max-width: 75vw;
         margin: auto;
         
     }
 
     .search-bar-div ::deep .sort-icon-config {
         margin: auto;
-        min-width: 10vw;
-  
     }
 
 .item-display-div{
