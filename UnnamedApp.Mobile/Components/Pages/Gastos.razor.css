@@ -1,0 +1,12 @@
+
+
+.Div-Master {
+    --margem-do-gastos-donut: 1.2 rem;
+}
+    .Div-Master::deep .gastos-mud-paper {
+        max-width: 90vw;
+        margin-right: var(--margem-do-gastos-donut);
+        margin-left: var(--margem-do-gastos-donut);
+        padding-left: 1.2rem;
+        margin-bottom: var(--margem-do-gastos-donut)
+}

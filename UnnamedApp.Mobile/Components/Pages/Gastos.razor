@@ -1,6 +1,120 @@
 ﻿@page "/gastos"
-<h3>Gastos</h3>
+@using UnnamedApp.Mobile.Components.NoRoute
+@using UnnamedApp.Mobile.Components.Dialogue
+@inject IDialogService DialogService
+
+<!-- Dynamic Sizing - Combo Box para testar
+
+-->
+
+<h3>List It</h3>
+
+
+<div style="width: 90%;">
+    <MudDatePicker Label="Selecione o Mês"
+                   @bind-Date="dataSelecionada"
+                   OpenTo="OpenTo.Month"
+                   DateFormat="MM/yyyy"
+                   Class="ms-2" />
+</div>
+
+
+<!-- Para fazer: Alterar Max-Width para uma medida dinâmica, que se ajuste ao tamanho da tela -->
+
+<div>
+    <MudStack Class="d-flex justify-cente mx-auto mt-4" Style="width: 90vw; max-width: 400px">
+        <MudPaper Elevation="5" Class=" pa-3" Style="flex: 1; min-height: 200px">
+        <MudChart T="double" ChartType="ChartType.Donut" Width="100%" Height="130px" @bind-SelectedIndex="Index" ChartSeries="@([data])" ChartLabels="@labels"></MudChart>
+    </MudPaper>
+ </MudStack>   
+</div>
+
+
+<MudStack Row="true" Class="d-flex justify-cente mx-auto mt-4" Style="width: 90vw; max-width: 400px; gap: 12px">
+
+    <MudPaper Elevation="5" Class=" pa-3" Style="flex: 1; min-height: 80px">
+        <MudText Align="Align.Center"> Total Gasto</MudText>
+        <MudText Align="Align.Center" Style="font-size: 20px;font-weight:bolder "> R$ 1.000,00 </MudText>
+    </MudPaper>
+    
+    <MudPaper Elevation="5" Class=" pa-3" Style="flex: 1; min-height: 80px">
+        <MudText Align="Align.Center"> Total Itens</MudText>
+        <MudText Align="Align.Center" Style="font-size: 20px;font-weight:bolder "> 20 </MudText>
+    </MudPaper>
+</MudStack>
+
+<MudStack Class="d-flex justify-cente mx-auto mt-4" Style=" width: 90vw; max-width: 400px">
+    <MudPaper Elevation="5" Class=" pa-4" Style="flex: 1; min-height: 250px">
+        <MudChart ChartType="ChartType.Bar" ChartSeries="@_seriesGastos" @bind-SelectedIndex="_index" ChartLabels="@X_Label_Grafico_Gastos" ChartOptions="Opcoes_Grafico_Gastos"
+                  Width="100%" Height="@($"{_height}px")" MatchBoundsToSize="@_matchBoundsToSize_Gastos"></MudChart>
+    </MudPaper>
+</MudStack>
+
+<MudStack Class="d-flex justify-cente mx-auto mt-4" Style=" width: 90vw; max-width: 400px">
+    <MudPaper Elevation="5" Class=" pa-4" Style="flex: 1; min-height: 250px">
+        <MudChart ChartType="ChartType.Bar" ChartSeries="@_seriesItens" @bind-SelectedIndex="_index" ChartLabels="@X_Label_Grafico_Itens" ChartOptions="Opcoes_Grafico_Itens"
+                  Width="100%" Height="@($"{_height}px")" MatchBoundsToSize="@_matchBoundsToSize_Itens"></MudChart>
+    </MudPaper>
+</MudStack>
+
 
 @code {
 
+        DateTime? dataSelecionada = DateTime.Today;
+        Random random = new Random();
+
+
+    private int Index = -1; //default value cannot be 0 -> first selectedindex is 0.
+    int dataSize = 5;
+    public double[] data = { 50, 25, 20, 5 };
+    public string[] labels = { "Gastos", "Limite" };
+
+    
+
+    private int _index = -1; //default value cannot be 0 -> first selectedindex is 0.
+    private int _height = 180;
+    private bool _matchBoundsToSize_Gastos = false;
+    private bool _matchBoundsToSize_Itens = false;
+    
+    <!-- Para fazer: Código para calcular o intervalo das linhas da tabela, conforme os dados, podendo alterar ou diminuir a distancia-
+    das linhas conforme o tamanho dos dados. Tipo:
+    Dependendo do valor mais alto, pode fica 20 em 20, 50 em 50, 100 em 100, 250 em 250, etc... -->
+
+
+    <!-- Gráfico Gastos -->
+    private BarChartOptions Opcoes_Grafico_Gastos = new BarChartOptions()
+    {
+        XAxisTitle = "Valor Gasto por Mês",
+        YAxisTitle = "Gasto",
+        FixedBarWidth = 10,
+        YAxisTicks = 50
+    };
+    private List<ChartSeries<double>> _seriesGastos = new()
+    {
+        new() { Name = "Gastos", Data = new double[] { 40, 30, 25, 27, 46, 60, 48, 500, 15 } },
+    };
+    private string[] X_Label_Grafico_Gastos = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep" };
+
+
+    <!-- Gráfico Itens -->
+
+    private BarChartOptions Opcoes_Grafico_Itens = new BarChartOptions()
+    {
+        XAxisTitle = "Itens Comprados por Mês",
+        YAxisTitle = "Itens",
+        FixedBarWidth = 10,
+        YAxisTicks = 5
+    };
+    private List<ChartSeries<double>> _seriesItens = new()
+    {
+        new() { Name = "Itens", Data = new double[] { 6, 2, 15, 10, 8, 7, 6, 11, 12 } },
+    };
+    private string[] X_Label_Grafico_Itens = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep" };
+
+
 }
+
+
+
+
+

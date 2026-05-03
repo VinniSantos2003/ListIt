@@ -87,4 +87,8 @@
       <ProjectReference Include="..\UnnamedApp.SharedKernel\UnnamedApp.SharedKernel.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Services\" />
+    </ItemGroup>
+
 </Project>
